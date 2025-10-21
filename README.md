@@ -46,4 +46,12 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 
 <img width="4566" height="2772" alt="Demand Forecasting and Rebalancing Workflow" src="https://github.com/user-attachments/assets/25a1dca2-0ae8-4846-83d7-95fd3b4d0ff6" />
 
+## AI Usecase 2: Battery & Charging Optimization
 
+- **Purpose**: Predict time-to-empty and charger occupancy; create swap/charge routes.
+- **Data**: Fabric Gold (SOC curves, temp/elevation), telemetry stream-derived features, charger events; Azure Maps traffic matrix.
+- **Train**: Azure ML models for SOC depletion and occupancy; re‑trained daily; metrics logged and versioned.
+- **Serve**: Agent Orchestrator fetches predictions → Optimization (OR-Tools or Azure Quantum) with Azure Maps → writes crew tasks/routes to SQL and task state to Cosmos DB; caches “next actions” in Redis.
+- **Validate**: Run-outs avoided, task SLA, route time/distance, charger-occupancy error.
+- 
+<img width="5124" height="3998" alt="Battery and Charging Optimization" src="https://github.com/user-attachments/assets/78af0f28-c27a-4156-96d8-bf693a5844f3" />
