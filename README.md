@@ -1,4 +1,3 @@
-# CEIArchitectureKatas
 
 
 # MobilityCorp AI Enhanced Last Mile Transportation Platform
