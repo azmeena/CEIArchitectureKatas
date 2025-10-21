@@ -65,3 +65,13 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 
 <img width="3958" height="3060" alt="Vision Return Verification" src="https://github.com/user-attachments/assets/3a1360dd-91ea-4c5f-b326-632afb03f9f0" />
 
+## AI Usecase 4: Personalization, Policy & Pricing Copilot
+
+- **Purpose**: Next‑best‑action (commute plan, bay suggestion, incentive) and natural‑language explanations of charges/fines with citations.
+- **Data**: SQL (history, segments, prices), Redis (recent features), forecasts from SQL, Cognitive Search over policies/FAQs; PII minimized.
+- **Models**: AML propensity/ranking + Azure OpenAI with RAG; Content Safety filters; bandit learning on outcomes.
+- **Serve**: API calls Agent Orchestrator → score propensity → retrieve grounding → generate message/plan; write decisions to SQL; cache quick tips in Redis.
+- **Validate**: Uplift (CTR/retention), CSAT, safety flags, latency/cost; A/B via APIM revisions.
+<img width="5256" height="3253" alt="Personalization Engine" src="https://github.com/user-attachments/assets/5cf11d44-dabb-4d17-bfac-c525886604bf" />
+
+- 
