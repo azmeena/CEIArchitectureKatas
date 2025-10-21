@@ -54,3 +54,14 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 - **Validate**: Run-outs avoided, task SLA, route time/distance, charger-occupancy error.
 - 
 <img width="5124" height="3998" alt="Battery and Charging Optimization" src="https://github.com/user-attachments/assets/78af0f28-c27a-4156-96d8-bf693a5844f3" />
+
+## AI Usecase 3: Vision Return Verification
+
+- **Purpose**: Verify correct bay, EV plugged, and visible damage; route low confidence to human review.
+- **Data**: Photos in OneLake; metadata (bookingId, bayId, GPS, ts) in SQL; policies in Cognitive Search.
+- **Models**: Azure AI Vision or Azure OpenAI Vision; thresholding; optional RAG explanation on policy.
+- **Flow**: Returns API starts Durable Function → Agent Orchestrator calls Vision → high confidence: lock via IoT Hub, compute charges/fines in SQL, store evidence URIs; low confidence: enqueue review and hold charges.
+- **Validate**: Precision/recall, dispute/chargeback rate, average review time, latency; Content Safety applied to uploads/prompts.
+
+<img width="3958" height="3060" alt="Vision Return Verification" src="https://github.com/user-attachments/assets/3a1360dd-91ea-4c5f-b326-632afb03f9f0" />
+
