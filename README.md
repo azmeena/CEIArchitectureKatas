@@ -29,5 +29,18 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 ## AI-Driven Solution Overview
 
 
-
 <img width="1680" height="2512" alt="High Level Architecture" src="https://github.com/user-attachments/assets/46108984-b66b-472e-a8ae-35cc6dd8c0fb" />
+
+
+## AI Usecase 1: Demand Prediction & Rebalance
+Purpose: forecast bay/zone demand and generate rebalancing targets.
+Data: Fabric OneLake Gold (rides, bay occupancy, weather/events), Cosmos DB current state (last seen), SQL bookings, feature snapshots cached in Redis.
+Train: Fabric pipeline → Azure ML AutoML TS/custom LightGBM; register in AML; lineage in Purview.
+Serve:
+  Batch: AML pipeline writes next 12–24h demand_by_bay_hour to SQL and hot ranks to Redis.
+  Online what-if: Orchestrator queries AML Endpoint for scenario runs.
+Orchestration: Agent Orchestrator (Azure AI Foundry) triggers on schedule or “demand spike” event; emits Service Bus message for Dispatch.
+Validate: WAPE/MASE, hotspot hit rate, utilization uplift; drift alerts on feature distributions.
+<img width="4566" height="2772" alt="Demand Forecasting and Rebalancing Workflow" src="https://github.com/user-attachments/assets/25a1dca2-0ae8-4846-83d7-95fd3b4d0ff6" />
+
+
