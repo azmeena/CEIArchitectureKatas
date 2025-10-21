@@ -27,3 +27,7 @@ Improve Customer Engagement: Encourage regular usage through personalized experi
 Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
 
 ## AI-Driven Solution Overview
+
+
+
+<img width="1680" height="2512" alt="High Level Architecture" src="https://github.com/user-attachments/assets/46108984-b66b-472e-a8ae-35cc6dd8c0fb" />
