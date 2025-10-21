@@ -30,6 +30,10 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 
 <img width="1680" height="2512" alt="High Level Architecture" src="https://github.com/user-attachments/assets/46108984-b66b-472e-a8ae-35cc6dd8c0fb" />
 
+## Cloud Architecture
+
+<img width="2528" height="4690" alt="Azure Arch" src="https://github.com/user-attachments/assets/bd36b6ee-4de6-4a01-995c-9524b7db5ab9" />
+
 
 ## AI Usecase 1: Demand Prediction & Rebalance
 ### Demand Prediction & Rebalance
