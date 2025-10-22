@@ -146,6 +146,15 @@ Small, interpretable models for operational decisions + LLMs for natural languag
 
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
+## Limitations with adoption of Gen AI
+- Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
+- Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
+- Privacy & compliance: location, payment, and driver/customer photos are sensitive , must avoid sending PII to third-party LLMs without guarantees.
+- Explainability: GenAI summarizations or recommendations need traceability for audits and customer disputes.
+- Cost & latency: high-volume/real-time inference (per-minute pricing, on-device inference vs cloud) can be costly/latency-sensitive.
+- Vendor lock-in & disruption risk: providers may change pricing or SLAs; reliance on a single provider is risky.
+- Edge limitations: LLMs aren’t suitable on-device for some mobile or edge-constrained scenarios unless smaller models or embeddings-only approaches are used.
+
 ## Architecture Principles
 
 1. Separation of Concerns
@@ -238,11 +247,4 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Operational efficiency → Vision AI for automated photo verification
 - Staff routing → Battery Optimization AI provides route optimization
 
-## Limitations with adoption of Gen AI
-- Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
-- Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
-- Privacy & compliance: location, payment, and driver/customer photos are sensitive , must avoid sending PII to third-party LLMs without guarantees.
-- Explainability: GenAI summarizations or recommendations need traceability for audits and customer disputes.
-- Cost & latency: high-volume/real-time inference (per-minute pricing, on-device inference vs cloud) can be costly/latency-sensitive.
-- Vendor lock-in & disruption risk: providers may change pricing or SLAs; reliance on a single provider is risky.
-- Edge limitations: LLMs aren’t suitable on-device for some mobile or edge-constrained scenarios unless smaller models or embeddings-only approaches are used.
+
