@@ -6,33 +6,26 @@
 MobilityCorp provides short-term rentals for last-mile transport, including electric scooters, eBikes, and electric cars/vans. Operating in both urban and suburban areas, the company faces challenges in vehicle availability, battery management, and customer engagement. Customers book vehicles via a mobile app, and vehicles must be returned to designated spots with proof of return and feedback.
 
 ## Business Constraints
-Vehicles must be returned to designated parking spots.
-Cars and vans must be plugged into EV chargers upon return.
-Bikes and scooters require manual battery swaps by staff.
-Bookings vary by vehicle type: cars/vans (up to 7 days), bikes/scooters (up to 30 minutes in advance).
-Customers pay per minute; fines apply for late or incorrect returns.
-All vehicles are GPS-enabled and remotely unlockable.
+- Vehicles must be returned to designated parking spots.
+- Cars and vans must be plugged into EV chargers upon return.
+- Bikes and scooters require manual battery swaps by staff.
+- Bookings vary by vehicle type: cars/vans (up to 7 days), bikes/scooters (up to 30 minutes in advance).
+- Customers pay per minute; fines apply for late or incorrect returns.
+- All vehicles are GPS-enabled and remotely unlockable.
+
 
 ## Key Challenges
-Vehicle Availability: Customers often find vehicles unavailable at desired locations.
-Battery Management: Electric vehicles frequently run out of charge, impacting service reliability.
-Customer Retention: Most users rely on MobilityCorp for ad-hoc trips; regular usage is low.
-Operational Efficiency: Staff must manually redistribute vehicles and swap batteries.
+- Vehicle Availability: Customers often find vehicles unavailable at desired locations.
+- Battery Management: Electric vehicles frequently run out of charge, impacting service reliability.
+- Customer Retention: Most users rely on MobilityCorp for ad-hoc trips; regular usage is low.
+- Operational Efficiency: Staff must manually redistribute vehicles and swap batteries.
 
 ## Key Objectives
-Optimize Fleet Distribution: Ensure vehicles are available where and when needed.
-Enhance Battery Logistics: Prioritize battery swaps and charging based on predicted demand.
-Improve Customer Engagement: Encourage regular usage through personalized experiences.
-Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
+- Optimize Fleet Distribution: Ensure vehicles are available where and when needed.
+- Enhance Battery Logistics: Prioritize battery swaps and charging based on predicted demand.
+- Improve Customer Engagement: Encourage regular usage through personalized experiences.
+- Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
 
-## Business Constraints
-Booking rules: cars/vans bookable up to 7 days (bounded-duration); bikes/scooters up to 30 minutes with open-ended rentals (up to 12 hours). 
-Payment per minute; fines for late/wrong returns. 
-All vehicles have GPS; cars/vans may be remotely disabled; vehicles unlock via NFC-capable smartphone app. 
-Return rules: must be returned to designated spots, photographic proof required; cars/vans must be plugged to charger on return. 
-Operational reality: staff swap bike/scooter battery packs and redistribute vehicles via vans.
-Budget and margins: solutions must be cost-effective (cloud + API usage costs, operations).
-Regulatory & safety: remote disable and customer safety features must comply with local laws and insurance requirements.
 
 ## Reference Architecture
 <img width="1680" height="2256" alt="ReferenceArchitecture" src="https://github.com/user-attachments/assets/b8aab02f-f48f-4120-bcd7-698901c905ec" />
