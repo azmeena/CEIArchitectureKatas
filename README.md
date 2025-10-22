@@ -177,11 +177,11 @@ Governance and observability pay off: tracking prompt versions and model outputs
 
 ## Key Strengths Addressing Business Challenges
 
-Vehicle availability problem → Demand Prediction Engine with ML forecasting
-Battery management → Battery Optimization AI with prioritization algorithms
-Customer retention → Personalization Engine with LLM-powered recommendations
-Operational efficiency → Vision AI for automated photo verification
-Staff routing → Battery Optimization AI provides route optimization
+- Vehicle availability problem → Demand Prediction Engine with ML forecasting
+- Battery management → Battery Optimization AI with prioritization algorithms
+- Customer retention → Personalization Engine with LLM-powered recommendations
+- Operational efficiency → Vision AI for automated photo verification
+- Staff routing → Battery Optimization AI provides route optimization
 
 ## Limitations with adoption of Gen AI
 - Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
