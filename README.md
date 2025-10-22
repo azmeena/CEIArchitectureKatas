@@ -28,7 +28,9 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 
 ## Our AI-Powered Solution
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
+
 The Challenge: How do we know when and where people will want vehicles?
+
 Our AI Solution: We deployed a sophisticated machine learning pipeline that analyzes historical usage patterns, real-time events, and weather conditions to forecast demand across all MobilityCorp locations.
 How It Works:
 
