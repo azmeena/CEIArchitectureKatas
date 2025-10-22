@@ -162,7 +162,7 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Vendor lock-in & disruption risk: providers may change pricing or SLAs; reliance on a single provider is risky.
 - Edge limitations: LLMs aren’t suitable on-device for some mobile or edge-constrained scenarios unless smaller models or embeddings-only approaches are used.
 
-## Architecture Principles
+## Architecture Principles Achieved
 
 1. Separation of Concerns
 
