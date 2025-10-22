@@ -91,7 +91,7 @@ Small, interpretable models for operational decisions + LLMs for natural languag
 
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
-**##Architecture principles**
+## Architecture Principles
 
 1. Separation of Concerns
 
@@ -175,7 +175,7 @@ Comprehensive data collection: Operational DB + Time-Series DB + Data Lake captu
 ML training pipeline: Data Lake feeds Feature Store for continuous model improvement
 Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
 
-**##Key Strengths Addressing Business Challenges:**
+## Key Strengths Addressing Business Challenges
 
 Vehicle availability problem → Demand Prediction Engine with ML forecasting
 Battery management → Battery Optimization AI with prioritization algorithms
