@@ -83,8 +83,6 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 
 Data collection is the bottleneck: telemetry completeness, time synchronization, and photo quality determine model accuracy. 
 
-q4architecturekatamobilitycorp1…
-
 Human-in-loop remains critical for edge cases; fully autonomous control is risky and legally sensitive.
 
 RAG (retrieve + generate) can make the LLM's outputs more grounded — but retrieval quality and indexing matter.
@@ -92,3 +90,12 @@ RAG (retrieve + generate) can make the LLM's outputs more grounded — but retri
 Small, interpretable models for operational decisions + LLMs for natural language tasks is an effective hybrid.
 
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
+
+## Limitations with adoption of Gen AI
+- Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
+- Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
+- Privacy & compliance: location, payment, and driver/customer photos are sensitive , must avoid sending PII to third-party LLMs without guarantees.
+- Explainability: GenAI summarizations or recommendations need traceability for audits and customer disputes.
+- Cost & latency: high-volume/real-time inference (per-minute pricing, on-device inference vs cloud) can be costly/latency-sensitive.
+- Vendor lock-in & disruption risk: providers may change pricing or SLAs; reliance on a single provider is risky.
+- Edge limitations: LLMs aren’t suitable on-device for some mobile or edge-constrained scenarios unless smaller models or embeddings-only approaches are used.
