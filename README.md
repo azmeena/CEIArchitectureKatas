@@ -39,6 +39,7 @@ How It Works:
 - Real-time recalibration continuously updates predictions as actual bookings occur
 
 Business Impact: Staff can proactively reposition vehicles before demand spikes, dramatically reducing "vehicle not available" complaints and maximizing fleet utilization.
+
 2. Battery Optimization AI: Intelligent Resource Allocation
 The Challenge: Which bikes and scooters should we prioritize for battery swaps?
 Our AI Solution: A multi-objective optimization engine that prioritizes battery swap routes based on predicted demand, current battery levels, and staff routing efficiency.
@@ -55,6 +56,7 @@ How It Works:
 - Battery life prediction models forecast degradation patterns to schedule preventive maintenance
 
 Business Impact: Staff spend less time driving and more time swapping batteries where it matters most. Vehicles are charged and ready during peak demand periods, reducing customer frustration and maximizing revenue.
+
 3. Personalization Engine: Building Customer Loyalty Through Intelligence
 The Challenge: How do we convert ad-hoc users into regular commuters?
 Our AI Solution: An LLM-powered personalization engine that understands individual user patterns and proactively encourages routine usage through smart recommendations and incentives.
@@ -66,6 +68,7 @@ How It Works:
 - Personalized incentives offer targeted promotions based on individual behavior patterns
 
 Business Impact: Increased customer lifetime value through higher booking frequency. Ad-hoc users transition to daily commuters, creating predictable revenue streams.
+
 4. Vision AI: Automating Compliance and Quality Control
 The Challenge: Manual verification of vehicle returns creates operational overhead and potential disputes.
 Our AI Solution: Computer vision models that automatically verify parking compliance, detect vehicle damage, and validate charging connections.
