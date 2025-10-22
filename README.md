@@ -246,6 +246,66 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - ML training pipeline: Data Lake feeds Feature Store for continuous model improvement
 - Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
 
+
+  ## Dealing with AI Uncertainty (Provider changes, price shocks, outages)
+
+### Strategy
+- **Provider abstraction**: Use capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per‑vendor adapters; isolate SDKs from business logic.
+- **Multi‑provider policy router**: Route by policy (quality tier, latency SLO, data classification, region, max cost/request). Health/cost‑aware scoring with sticky routing for A/B.
+- **Cost governance**: Per‑feature budgets and alerts; hard caps and kill switches. Prompt compression, truncation, retrieval‑first, caching (Redis), and batching where safe. Tiered defaults favor smaller/faster models on critical paths.
+- **Continuity & graceful degradation**: Hot/warm secondary providers plus optional self‑hosted fallback (AKS + vLLM/Triton). Degrade to deterministic templates/rules, cached answers, or “human review required.”
+- **Resilience controls**: Circuit breakers, exponential backoff, timeouts, idempotency, dead‑letter queues; feature flags for instant cutover.
+- **Security & compliance**: Provider allowlist by data class; regional routing; PII minimization/redaction; full audit logs of AI decisions.
+
+### Architecture hooks
+- All AI calls traverse the Agent Orchestrator; providers are behind capability interfaces.
+- Retrieval grounded via Cognitive Search; fall back to “no answer” on low confidence.
+- Cost/quality telemetry emitted per request; policies centrally managed via APIM/Config.
+
+### Operational playbooks
+- **Price spike**: Auto‑recompute effective $/unit → switch to lower‑tier model/provider within budget; tighten prompts and increase cache TTLs.
+- **Provider outage**: Auto‑failover to secondary; if multi‑region, degrade to deterministic mode and queue for human review.
+- **Quality regression**: Freeze variant, revert via feature flag, open incident with runbook.
+
+### Execution checklist
+- Capability interfaces + adapters implemented and tested.
+- Policy router live with health/cost scoring and feature flags.
+- Budgets, alerts, caps, and kill switches configured per feature.
+- Secondary providers and degradation modes verified quarterly.
+
+## Verifying GenAI Works in Production (Non‑determinism)
+
+### Pre‑production evaluation
+- Golden datasets per use case (Demand, Battery, Vision, Personalization) including edge cases.
+- Offline eval harness with task‑specific metrics; CI gates require threshold wins vs control.
+- Version all prompts/chains/models; semantic versions with model cards and rollout notes.
+
+### Safe rollouts
+- Shadow traffic → canary (1–5%) → progressive rollout; auto‑rollback on SLO or safety breach.
+- A/B tests and bandits for personalization within policy and safety bounds.
+
+### Observability & drift
+- Log: inputs/features, prompt template+version, provider+model+version, output, latency, cost, safety flags, retrieval coverage.
+- Drift monitors: input distribution shift, hallucination/refusal rate, toxicity flags, grounding coverage/freshness.
+- Weekly regression jobs on fresh samples; scorecards by city/segment.
+
+### Guardrails & human‑in‑loop
+- Hard checks for critical actions (e.g., fines/locks require deterministic validation).
+- Confidence thresholds route low‑confidence cases to human review; Content Safety pre/post filters.
+- RAG rules: require citations; degrade to “no answer” if retrieval confidence is low.
+
+### SLOs & KPIs by use case
+- **Demand Prediction**: sMAPE/MAE/WAPE, availability hit rate, calibration; alert on error spikes.
+- **Battery Optimization**: run‑outs avoided, task SLA met %, route time/distance vs baseline.
+- **Vision Returns**: precision/recall at operating point, false dispute rate, review SLA, low‑confidence rate.
+- **Personalization**: CTR/uplift, retention, opt‑out/complaint rate, response latency/cost.
+
+### Execution checklist
+- Golden datasets + eval harness wired into CI.
+- Shadow/canary rollout with auto‑rollback enabled.
+- Dashboards and alerts for quality, cost, latency, safety, and drift.
+- Human‑review workflow active; RAG guardrails enforced.
+
 ## Business Outcomes
 Our AI-enhanced architecture directly addresses MobilityCorp's stated challenges:
 - Right vehicles, right places: Demand prediction reduces "vehicle unavailable" complaints by anticipating needs
