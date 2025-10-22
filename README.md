@@ -28,7 +28,7 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 
 
 ## Our AI-Powered Solution
-1. Demand Prediction Engine: Putting Vehicles Where They're Needed
+**1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 The Challenge: How do we know when and where people will want vehicles?
 Our AI Solution: We deployed a sophisticated machine learning pipeline that analyzes historical usage patterns, real-time events, and weather conditions to forecast demand across all MobilityCorp locations.
 How It Works:
@@ -40,7 +40,7 @@ How It Works:
 
 Business Impact: Staff can proactively reposition vehicles before demand spikes, dramatically reducing "vehicle not available" complaints and maximizing fleet utilization.
 
-2. Battery Optimization AI: Intelligent Resource Allocation
+**2. Battery Optimization AI: Intelligent Resource Allocation**
 The Challenge: Which bikes and scooters should we prioritize for battery swaps?
 Our AI Solution: A multi-objective optimization engine that prioritizes battery swap routes based on predicted demand, current battery levels, and staff routing efficiency.
 How It Works:
@@ -57,7 +57,7 @@ How It Works:
 
 Business Impact: Staff spend less time driving and more time swapping batteries where it matters most. Vehicles are charged and ready during peak demand periods, reducing customer frustration and maximizing revenue.
 
-3. Personalization Engine: Building Customer Loyalty Through Intelligence
+**3. Personalization Engine: Building Customer Loyalty Through Intelligence**
 The Challenge: How do we convert ad-hoc users into regular commuters?
 Our AI Solution: An LLM-powered personalization engine that understands individual user patterns and proactively encourages routine usage through smart recommendations and incentives.
 How It Works:
@@ -69,7 +69,7 @@ How It Works:
 
 Business Impact: Increased customer lifetime value through higher booking frequency. Ad-hoc users transition to daily commuters, creating predictable revenue streams.
 
-4. Vision AI: Automating Compliance and Quality Control
+**4. Vision AI: Automating Compliance and Quality Control**
 The Challenge: Manual verification of vehicle returns creates operational overhead and potential disputes.
 Our AI Solution: Computer vision models that automatically verify parking compliance, detect vehicle damage, and validate charging connections.
 How It Works:
