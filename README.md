@@ -5,15 +5,6 @@
 ## Problem Statement
 MobilityCorp provides short-term rentals for last-mile transport, including electric scooters, eBikes, and electric cars/vans. Operating in both urban and suburban areas, the company faces challenges in vehicle availability, battery management, and customer engagement. Customers book vehicles via a mobile app, and vehicles must be returned to designated spots with proof of return and feedback.
 
-## Business Constraints
-- Vehicles must be returned to designated parking spots.
-- Cars and vans must be plugged into EV chargers upon return.
-- Bikes and scooters require manual battery swaps by staff.
-- Bookings vary by vehicle type: cars/vans (up to 7 days), bikes/scooters (up to 30 minutes in advance).
-- Customers pay per minute; fines apply for late or incorrect returns.
-- All vehicles are GPS-enabled and remotely unlockable.
-
-
 ## Key Challenges
 - Vehicle Availability: Customers often find vehicles unavailable at desired locations.
 - Battery Management: Electric vehicles frequently run out of charge, impacting service reliability.
@@ -25,6 +16,14 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 - Enhance Battery Logistics: Prioritize battery swaps and charging based on predicted demand.
 - Improve Customer Engagement: Encourage regular usage through personalized experiences.
 - Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
+
+## Business Constraints
+- Vehicles must be returned to designated parking spots.
+- Cars and vans must be plugged into EV chargers upon return.
+- Bikes and scooters require manual battery swaps by staff.
+- Bookings vary by vehicle type: cars/vans (up to 7 days), bikes/scooters (up to 30 minutes in advance).
+- Customers pay per minute; fines apply for late or incorrect returns.
+- All vehicles are GPS-enabled and remotely unlockable.
 
 
 ## Our AI-Powered Solution
@@ -146,7 +145,7 @@ Small, interpretable models for operational decisions + LLMs for natural languag
 
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
-## Limitations with adoption of Gen AI
+## Limitations with adoption of Gen AI and how we solved them
 - Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
 - Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
 - Privacy & compliance: location, payment, and driver/customer photos are sensitive , must avoid sending PII to third-party LLMs without guarantees.
@@ -248,6 +247,5 @@ Our AI-enhanced architecture directly addresses MobilityCorp's stated challenges
 - Scalable foundation: Architecture supports expansion to new cities without redesigning core systems
 
 ## Conclusion
-By strategically deploying AI at four critical decision points—demand forecasting, battery optimization, customer personalization, and compliance automation—we've transformed MobilityCorp from a reactive rental service into a predictive mobility platform. The architecture balances innovation with pragmatism, leveraging cutting-edge AI capabilities while maintaining operational resilience and preparing for the uncertain future of AI technology.
-This isn't just about adding AI features—it's about fundamentally reimagining how a mobility company operates in an AI-enabled world.
+By strategically deploying AI at four critical decision points, demand forecasting, battery optimization, customer personalization, and compliance automation, we've transformed MobilityCorp from a reactive rental service into a predictive mobility platform. The architecture balances innovation with pragmatism, leveraging cutting-edge AI capabilities while maintaining operational resilience and preparing for the uncertain future of AI technology.
 
