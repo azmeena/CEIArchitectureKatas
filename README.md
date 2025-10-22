@@ -247,7 +247,7 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
 
 
-  ## Dealing with AI Uncertainty (Provider changes, price shocks, outages)
+  ## Our Strategy for Dealing with AI Uncertainty (Provider changes, price shocks, outages)
 
 ### Strategy
 - **Provider abstraction**: Use capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per‑vendor adapters; isolate SDKs from business logic.
@@ -273,7 +273,7 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Budgets, alerts, caps, and kill switches configured per feature.
 - Secondary providers and degradation modes verified quarterly.
 
-## Verifying GenAI Works in Production (Non‑determinism)
+## Our Strategy for Verifying GenAI Works in Production (Non‑determinism)
 
 ### Pre‑production evaluation
 - Golden datasets per use case (Demand, Battery, Vision, Personalization) including edge cases.
@@ -293,12 +293,6 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Hard checks for critical actions (e.g., fines/locks require deterministic validation).
 - Confidence thresholds route low‑confidence cases to human review; Content Safety pre/post filters.
 - RAG rules: require citations; degrade to “no answer” if retrieval confidence is low.
-
-### SLOs & KPIs by use case
-- **Demand Prediction**: sMAPE/MAE/WAPE, availability hit rate, calibration; alert on error spikes.
-- **Battery Optimization**: run‑outs avoided, task SLA met %, route time/distance vs baseline.
-- **Vision Returns**: precision/recall at operating point, false dispute rate, review SLA, low‑confidence rate.
-- **Personalization**: CTR/uplift, retention, opt‑out/complaint rate, response latency/cost.
 
 ### Execution checklist
 - Golden datasets + eval harness wired into CI.
