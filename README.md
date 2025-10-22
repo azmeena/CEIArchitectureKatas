@@ -25,10 +25,10 @@ Enhance Battery Logistics: Prioritize battery swaps and charging based on predic
 Improve Customer Engagement: Encourage regular usage through personalized experiences.
 Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
 
-## AI-Driven Solution Overview
+## Reference Architecture
+<img width="1680" height="2256" alt="ReferenceArchitecture" src="https://github.com/user-attachments/assets/b8aab02f-f48f-4120-bcd7-698901c905ec" />
 
 
-<img width="1680" height="2512" alt="High Level Architecture" src="https://github.com/user-attachments/assets/46108984-b66b-472e-a8ae-35cc6dd8c0fb" />
 
 ## Cloud Architecture
 
