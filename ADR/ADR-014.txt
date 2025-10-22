@@ -1,0 +1,31 @@
+Title
+	Azure Monitor and Application Insights for Observability
+
+Status
+	Accepted
+
+Context
+	Production system requires comprehensive monitoring of infrastructure, applications, and user experience. Need alerting for service degradation, cost anomalies, and security events. Distributed tracing essential for debugging microservices. Performance metrics needed for capacity planning. We evaluated Datadog, New Relic, Grafana Cloud, and Azure Monitor.
+
+Decision
+	We will use Azure Monitor with Application Insights for unified observability across all Azure resources.
+
+Consequences
+	Positive:
+		- Automatic instrumentation for Azure services 
+		- Application Insights provides end-to-end transaction tracing
+		- Log Analytics workspace centralizes logs from all sources 
+		- Smart detection automatically identifies anomalies and potential issues
+		- Live metrics stream for real-time debugging during incidents
+		- Kusto Query Language (KQL) enables powerful log analysis
+		- Direct integration with Azure Alerts and Action Groups
+		- Workbooks provide customizable dashboards for stakeholders
+
+	Negative:
+		- Data ingestion costs can be high 
+		- Retention limited to 90 days
+		- KQL learning curve for team familiar with SQL or other query languages
+		- Cross-application insights queries can be slow with large data volumes
+		- Distributed tracing requires consistent correlation ID propagation
+		- Alert rule management becomes complex with many microservices
+		- No built-in anomaly detection for business metrics 

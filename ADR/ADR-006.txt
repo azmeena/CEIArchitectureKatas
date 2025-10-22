@@ -1,0 +1,27 @@
+Title
+	Azure Data Explorer for IoT Time-Series Data
+
+Status
+	Accepted
+
+Context
+	GPS trackers on all vehicles generate location, battery level, and status data every 30 seconds. This produces millions of events daily. We need fast ingestion, efficient storage, and real-time queries for battery monitoring, geofence alerts, and demand prediction features. We evaluated InfluxDB,  AWS Timestream, and Azure Data Explorer.
+
+Decision
+	We will use Azure Data Explorer as the time-series database for all IoT telemetry data.
+
+Consequences
+	Positive:
+		- Purpose-built for high-volume time-series ingestion
+		- KQL query language optimized for time-series analytics and aggregations
+		- Native integration with Azure IoT Hub and Event Hubs
+		- Automatic data compression reduces storage costs 
+		- Fast queries for geospatial data using geo_point types
+		- Direct connector to Azure ML for feature engineering
+		- Built-in anomaly detection functions for battery health monitoring
+
+	Negative:
+		- KQL learning curve for team familiar with SQL
+		- Minimum cluster cost may be expensive for early stage
+		- Not ideal for transactional queries 
+		- Data retention policies needed to control costs

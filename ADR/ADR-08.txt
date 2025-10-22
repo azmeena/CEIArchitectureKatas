@@ -1,0 +1,29 @@
+Title
+	Azure IoT Hub for Vehicle Telemetry
+
+Status
+	Accepted
+
+Context
+	All vehicles contain GPS trackers and send telemetry every 30 seconds including location, battery level, lock status, and diagnostic data. We need bidirectional communication to send remote lock/unlock commands and disable vehicles if needed. The system must handle millions of messages daily from thousands of devices across multiple cities. We evaluated AWS IoT Core,  and Azure IoT Hub.
+
+Decision
+	We will use Azure IoT Hub as the central IoT message broker for all vehicle telemetry and command/control.
+
+Consequences
+	Positive:
+		- Enterprise-grade device management with device twins and fleet provisioning
+		- Bidirectional messaging supports remote lock/unlock commands
+		- Direct integration with Azure Data Explorer for telemetry storage
+		- Built-in security with per-device certificates and automatic certificate rotation
+		- Message routing to multiple endpoints 
+		- Geofencing and proximity detection using Azure Maps integration
+		- Auto-scaling handles growth from thousands to millions of devices
+
+	Negative:
+		- Cost scales with message volume
+		- Requires device SDK integration in vehicle hardware
+		- Message size limits may constrain diagnostic payloads
+		- Cold path latency for non-critical telemetry
+		- Device certificate management adds operational overhead
+		- Need separate DDoS protection for public endpoints

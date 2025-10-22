@@ -1,0 +1,30 @@
+Title
+	Azure API Management for API Gateway
+
+Status
+	Accepted
+
+Context
+	Mobile apps, staff portals, and IoT devices all access backend services through APIs. We need centralized authentication, rate limiting, API versioning, and monitoring. Developer portal needed for potential third-party integrations. Must support OAuth 2.0, API keys, and certificate-based auth for IoT. We evaluated  AWS API Gateway, and Azure API Management.
+
+Decision
+	We will use Azure API Management (APIM) as the unified API gateway for all client-facing APIs.
+
+Consequences
+	Positive:
+		- Centralized authentication with Microsoft Entra ID integration
+		- Policy-based rate limiting prevents abuse 
+		- Built-in caching reduces backend load and improves response times
+		- Developer portal for documentation and potential partner integrations
+		- API versioning and revision management for zero-downtime deployments
+		- Request/response transformation and validation
+		- Integration with Azure Monitor and Application Insights
+		- Support for multiple backends
+		- WebSocket support for real-time vehicle tracking features
+
+	Negative:
+		- Developer tier  required for production workloads
+		- Premium tier needed for multi-region and VNet integration
+		- Adds latency compared to direct backend calls
+		- Cache invalidation strategy needed to prevent stale data
+		- May become bottleneck if not properly scaled

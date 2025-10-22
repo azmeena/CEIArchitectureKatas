@@ -1,0 +1,27 @@
+Title
+	Azure OpenAI Service for Personalization
+
+Status
+	Accepted
+
+Context
+	We need to convert ad-hoc users into regular commuters through personalized recommendations, smart notifications, and conversational engagement. The solution must understand user behavior patterns, generate natural language messages, and provide context-aware suggestions. We considered OpenAI API directly, Claude API, and Azure OpenAI Service.
+
+Decision
+	We will use Azure OpenAI Service (GPT-5) as the primary LLM provider for the Personalization Engine.
+
+Consequences
+	Positive:
+		- Enterprise data privacy - customer data stays within Azure tenant
+		- Seamless integration with Azure ML and Application Insights
+		- Managed service with SLA guarantees and reliability
+		- Virtual network isolation and Microsoft Entra ID authentication
+		- Content filtering and abuse monitoring built-in
+		- Same GPT-5 models as OpenAI with enterprise controls
+		- Azure AI foundry will allow changing the LLM if needed
+
+	Negative:
+		- Slightly higher latency than direct OpenAI API (additional network hop)
+		- Limited model selection compared to direct OpenAI access
+		- Regional availability constraints may affect deployment locations
+		- May need abstraction layer (custom wrapper) to maintain provider flexibility

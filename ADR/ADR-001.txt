@@ -1,0 +1,23 @@
+Title
+	Azure Cloud Platform
+
+Status
+	Accepted
+
+Context
+	MobilityCorp needs a cloud platform to host AI services for demand prediction, battery optimization, personalization, and vision AI. The platform must support ML model training, real-time IoT data processing, geospatial services, and enterprise-grade security. We need reliable uptime for customer-facing services and staff operations across multiple regions.
+
+Decision
+	We will use Microsoft Azure as our primary cloud platform for all AI and core services.
+
+Consequences
+	Positive:
+		- Unified ecosystem reduces integration complexity across AI services
+		- Single vendor relationship simplifies procurement and support
+		- Enterprise SLAs and compliance certifications (SOC 2, ISO 27001)
+		- Azure OpenAI provides enterprise-grade LLM access with data privacy guarantees
+		- BLOB storage for unstructured and different variety of data
+	Negative:
+		- Vendor lock-in risk if Azure services change pricing or features
+		- Team needs Azure-specific training and certifications
+		- Potential higher costs compared to multi-cloud approach for specific workloads

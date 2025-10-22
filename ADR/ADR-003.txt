@@ -1,0 +1,27 @@
+Title
+	Azure Computer Vision for Return Validation
+
+Status
+	Accepted
+
+Context
+	Customers must submit photos proving vehicle return to designated spots. We need automated validation of parking location, vehicle condition, and charging cable connection for cars/vans. Manual review is not scalable. We evaluated AWS Rekognition, Google Vision API, and Azure Computer Vision.
+
+Decision
+	We will use Azure Computer Vision and Azure Custom Vision for photo validation and damage detection.
+
+Consequences
+	Positive:
+		- Pre-trained models handle common scenarios (object detection, scene analysis)
+		- Custom Vision allows training damage-specific models with our fleet images
+		- Direct integration with Azure Blob Storage for photo uploads
+		- Real-time inference via REST API or containerized deployment
+		- Lower latency for Azure-hosted mobile app backend
+		- Can process images on-device using exported ONNX models
+
+	Negative:
+		- Custom model training requires labeled dataset (initial manual effort)
+		- Model accuracy depends on photo quality (lighting, angles, weather)
+		- False positives may frustrate customers if parking is incorrectly flagged
+		- Need fallback to human review for edge cases (increases operational cost)
+		- Ongoing model retraining needed as vehicle types and damage patterns evolve

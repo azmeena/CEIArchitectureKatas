@@ -1,0 +1,30 @@
+Title
+	Google Maps Platform for Route Optimization
+
+Status
+	Accepted
+
+Context
+	Staff need optimized routes to swap batteries in bikes/scooters and relocate vehicles to high-demand areas. Routes must account for real-time traffic, multiple stops (up to 20-30 per shift), and vehicle capacity constraints. We evaluated Google Maps Platform,  and Azure Maps. While Azure Maps would provide better platform integration, routing quality and optimization capabilities are mission-critical for operational efficiency.
+
+Decision
+	We will use Google Maps Platform (Routes API and Route Optimization API) for staff routing, integrated with Azure ML for battery swap prioritization.
+
+Consequences
+	Positive:
+		- Industry-leading routing quality with most accurate real-time traffic data
+		- Route Optimization API supports up to 100 stops with time windows and vehicle constraints
+		- Superior geocoding and place data for parking bay validation
+		- Extensive global coverage with consistent quality across MobilityCorp's multiple cities
+		- Rich SDKs and documentation reduce development time
+		- Can leverage Google OR-Tools for advanced constraint satisfaction problems
+		- Proven reliability and uptime (99.9% SLA)
+
+	Negative:
+		- Additional vendor relationship outside Azure ecosystem 
+		- API keys and authentication separate from Microsoft Entra ID
+		- Higher cost than Azure Maps 
+		- Network latency for Azure-to-Google API calls (50-100ms additional roundtrip)
+		- Need secure key management in Azure Key Vault for Google API credentials
+		- Monitoring split across Azure Monitor and Google Cloud Console
+		- Potential integration complexity with Azure ML pipelines

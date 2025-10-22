@@ -1,0 +1,30 @@
+Title
+	Azure Functions for Event-Driven Processing
+
+Status
+	Accepted
+
+Context
+	Many operations are event-driven: sending notifications when vehicles are available, processing return photos, calculating fines for late returns, triggering battery swap alerts, and updating analytics. These workloads are sporadic and don't require always-on infrastructure. We evaluated AWS Lambda, Google Cloud Functions, and Azure Functions.
+
+Decision
+	We will use Azure Functions for all event-driven and background processing tasks.
+
+Consequences
+	Positive:
+		- Pay-per-execution model reduces costs for sporadic workloads
+		- Native triggers for Azure services 
+		- Auto-scaling handles traffic spikes
+		- Multiple language support (C#, Python, JavaScript) matches team skills
+		- Durable Functions for orchestrating complex workflows 
+		- Easy integration with Azure services using managed identity 
+		- Local development and testing with Azure Functions Core Tools
+		- 1 million executions free per month reduces development costs
+
+	Negative:
+		- Cold start latency may impact user experience for synchronous operations
+		- 5-minute execution timeout requires breaking long tasks into smaller chunks
+		- Debugging distributed functions more complex than monolithic apps
+		- Consumption plan limits 
+		- Need Premium plan  for VNet integration and longer timeouts
+		- Monitoring distributed functions requires correlation IDs and structured logging

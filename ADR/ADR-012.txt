@@ -1,0 +1,30 @@
+Title
+	Microsoft Entra ID for Identity Management
+
+Status
+	Accepted
+
+Context
+	Users (customers and staff) need secure authentication across mobile apps, web portals, and APIs. Staff have role-based access (operations, support, admin). Need SSO for staff productivity. Must support social login (Google, Apple) for customer convenience. MFA required for staff accounts. We evaluated Auth0, AWS Cognito, and Microsoft Entra ID.
+
+Decision
+	We will use Microsoft Entra ID (formerly Azure AD) as the identity provider for all users and service-to-service authentication.
+
+Consequences
+	Positive:
+		- Native integration with all Azure services using managed identities
+		- Conditional Access policies enable location-based and device-based security
+		- B2C tenant supports customer authentication with social identity providers
+		- Built-in MFA reduces security risks for staff accounts
+		- Seamless SSO for staff across multiple internal applications
+		- API permissions and scopes managed centrally
+		- Compliance certifications 
+		- Advanced threat protection detects credential compromise
+
+	Negative:
+		- B2C pricing adds up with large customer base
+		- Complex tenant architecture 
+		- Custom branding and user flows require front-end development
+		- Social identity provider setup requires separate agreements
+		- Token size can be large with many claims
+		- Learning curve for developers unfamiliar with OAuth 2.0/OIDC flows

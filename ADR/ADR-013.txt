@@ -1,0 +1,31 @@
+Title
+	Azure DevOps for CI/CD Pipelines
+
+Status
+	Accepted
+
+Context
+	Development team needs automated build, test, and deployment pipelines for rapid iteration. Must support multiple environments (dev, staging, production). Infrastructure as Code (IaC) for reproducibility. Integration with GitHub for source control. Compliance requires audit trail of all deployments. We evaluated GitHub Actions, GitLab CI, Jenkins, and Azure DevOps.
+
+Decision
+	We will use Azure DevOps Pipelines for CI/CD with GitHub integration for source control.
+
+Consequences
+	Positive:
+		- Native Azure resource deployment with ARM templates and Bicep
+		- Built-in artifact management for Docker images and NPM packages
+		- Approval gates and deployment tracking for production releases
+		- Integration with Azure Monitor for deployment health monitoring
+		- Test results and code coverage reporting in unified dashboard
+		- Pipeline templates promote reuse across microservices
+		- YAML-based pipelines enable version control and peer review
+		- Free tier includes unlimited private repos and 1800 build minutes/month
+		- Kubernetes support for core service deployment
+
+	Negative:
+		- YAML syntax learning curve for complex pipeline logic
+		- Azure DevOps UI feels dated compared to modern CI/CD tools
+		- GitHub Actions integration not as seamless as native GitHub workflows
+		- Parallel job limits on free tier may slow CI for large teams
+		- Service connections and variable groups management becomes complex at scale
+		- Limited community marketplace compared to GitHub Actions ecosystem

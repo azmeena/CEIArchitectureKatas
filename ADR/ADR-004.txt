@@ -1,0 +1,29 @@
+Title
+	Azure Machine Learning with H3 and Open-Source Tools for Demand Prediction
+
+Status
+	Accepted
+
+Context
+	Our biggest challenge is ensuring the right vehicles are in the right locations. We need to predict demand by location, time, vehicle type, weather, and events. This requires time-series forecasting, geospatial analysis, and integration of external data (weather, events). We evaluated building custom ML pipelines, using SageMaker, or Azure ML. For geospatial indexing, Uber's H3 is the industry standard used by Uber, Lyft, and other mobility companies.
+
+Decision
+	We will use Azure Machine Learning as the MLOps platform, with H3 (Uber) for geospatial indexing and open-source tools (Prophet, XGBoost) for modeling.
+
+Consequences
+	Positive:
+		- Azure ML provides complete MLOps - experiment tracking, model registry, deployment
+		- H3 hexagonal grid is proven for mobility use cases (Uber's technology)
+		- H3 enables hierarchical aggregation (city level zoom)
+		- Prophet (Meta) is purpose-built for time-series with seasonality
+		- XGBoost offers superior performance for tabular demand prediction
+		- Can run open-source tools in Azure ML compute without vendor lock-in
+		- Model portability - can move to other clouds if needed
+
+	Negative:
+		- Team needs to learn H3 spatial indexing concepts
+		- H3 library must be maintained and updated separately
+		- Azure-specific geospatial features (Azure Maps integration) not utilized
+		- Custom integration required between H3 hexagons and Azure services
+		- Open-source tools lack enterprise support 
+		- More DIY approach compared to fully managed Azure AutoML

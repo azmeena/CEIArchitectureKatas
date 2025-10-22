@@ -1,0 +1,69 @@
+Title
+	Hybrid Database Strategy - Cosmos DB and Azure SQL
+
+Status
+	Accepted
+
+Context
+	MobilityCorp needs to store operational data including user accounts, bookings, payment transactions, vehicle inventory, and parking bay locations. The system has two distinct data access patterns:
+	
+	Hot Path (Real-time Operations):
+		- Booking availability checks under high concurrent load 
+		- Single-digit millisecond latency for customer-facing operations
+		- High write throughput during peak hours 
+		- Global distribution across multiple cities/regions
+		- Document-oriented queries 
+
+	Cold Path (Analytics & Reporting):
+		- Financial reconciliation and audit reports
+		- Complex multi-table JOIN queries for business intelligence
+		- Revenue analysis by vehicle type, location, time period
+		- Regulatory compliance reporting
+		- Data warehouse for ML feature engineering
+
+	We evaluated three approaches:
+		- Cosmos DB only - Great for hot path, poor for complex analytics
+		- Azure SQL only - Great for analytics, struggles with global scale and write throughput
+		- Hybrid approach - Best of both worlds with synchronization overhead
+
+Decision
+	We will implement a hybrid database strategy:
+		- Azure Cosmos DB as the primary operational database for all transactional workloads
+		- Azure SQL Database as the analytical database for reporting, BI, and complex queries
+		- Change Feed + Azure Data Factory for near-real-time synchronization from Cosmos DB to SQL
+
+	Data Distribution:
+	Cosmos DB (Hot Path):
+		- User profiles and authentication metadata
+		- Active bookings 
+		- Real-time vehicle status and location
+		- Payment transactions 
+		- Parking bay availability
+
+	Azure SQL (Cold Path):
+		- Historical bookings
+		- Financial transactions 
+		- Aggregated analytics tables
+		- Dimensional data warehouse 
+		- ML training datasets 
+
+Consequences
+	Positive:
+		- Hot path performance: Cosmos DB provides <10ms latency for customer operations globally
+		- Analytics power: SQL enables complex JOINs, window functions, and stored procedures
+		- Cost optimization: Cosmos DB RUs only used for active data; SQL handles cheap cold storage
+		- Best tools for each job: Power BI, Tableau, and SQL analysts work naturally with Azure SQL
+		- Scalability: Cosmos DB scales horizontally for writes; SQL scales for read-heavy analytics
+		- Data freshness: Change Feed provides near-real-time sync 
+		- Regulatory compliance: SQL provides point-in-time restore and long-term retention
+		- Team productivity: NoSQL developers and SQL analysts each use familiar technologies
+
+	Negative:
+		- Eventual consistency: Analytics data lags behind operational data by seconds/minutes
+		- Data duplication: Storage costs for keeping data in both systems
+		- Synchronization complexity: Change Feed pipeline needs monitoring and error handling
+		- Schema management: Must maintain schema compatibility between Cosmos and SQL
+		- Operational overhead: Two databases mean two backup strategies, two security models
+		- Data transformation costs: Azure Data Factory pricing for ETL pipelines
+		- Debugging difficulty: Data discrepancies between systems require investigation
+		- Learning curve: Team needs expertise in both NoSQL and relational paradigms

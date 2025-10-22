@@ -1,0 +1,28 @@
+Title
+	Azure ML Model Monitoring for AI Validation
+
+Status
+	Accepted
+
+Context
+	GenAI and ML models are non-deterministic and can degrade over time due to data drift, changing user behavior, or model staleness. The kata judges specifically want to understand how we'll verify AI functionality in production. We need to detect when demand predictions become inaccurate, personalization effectiveness drops, or vision AI starts misclassifying images.
+
+Decision
+	We will implement comprehensive monitoring using Azure ML Model Monitoring, Application Insights, and custom business metrics dashboards in Power BI.
+
+Consequences
+	Positive:
+		- Data drift detection alerts when input distributions change
+		- Prediction distribution monitoring catches model degradation
+		- Custom metrics track business outcomes
+		- Validates model improvements before full rollout
+		- Automated alerts trigger model retraining pipelines
+		- Human-in-the-loop validation for edge cases 
+		- Logs all LLM interactions for quality review and fine-tuning
+
+	Negative:
+		- Monitoring infrastructure adds cost
+		- if not properly tuned, unnecessary alerts are common
+		- Requires defining good metrics 
+		- Human review process needed for non-deterministic AI outputs
+		- Some degradation may be gradual and hard to detect without long baseline
