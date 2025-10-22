@@ -91,6 +91,98 @@ Small, interpretable models for operational decisions + LLMs for natural languag
 
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
+**##Architecture principles**
+
+1. Separation of Concerns
+
+Clear layer separation: Client Layer → API Gateway → Services → Data → IoT layers are distinctly separated
+Domain-driven service boundaries: Booking, Payment, and Fleet services handle specific business capabilities independently
+AI services isolated: AI-powered services are grouped separately, preventing AI concerns from bleeding into core business logic
+
+2. Scalability
+
+Microservices architecture: Core services (Booking, Payment, Fleet) can scale independently based on demand
+Stateless API Gateway: Enables horizontal scaling of the entry point
+Separate data stores: Operational DB, Time-Series DB, Data Lake, and Feature Store can scale based on their specific workload patterns
+AI services decoupled: Demand Prediction, Battery Optimization, Personalization, and Vision AI can scale independently
+
+3. Modularity & Loose Coupling
+
+Service-oriented design: Each service has well-defined responsibilities
+API Gateway pattern: Decouples clients from service implementations
+External integrations abstracted: Payment Gateway, Weather API, Events API, and LLM Provider are treated as external dependencies that can be swapped
+
+4. Maintainability
+
+Single responsibility per service: Each service focuses on one domain (e.g., Booking Service only handles reservations)
+Clear interfaces: API Gateway provides a stable contract for clients
+Modular AI components: AI capabilities can be updated or replaced without affecting core business services
+
+5. Reliability & Availability
+
+Fault isolation: Failure in one service (e.g., Personalization Engine) won't bring down core functions (Booking, Payment)
+Critical path protection: Core business services are separated from experimental AI features
+IoT layer independence: Vehicle IoT devices operate independently with their own communication layer
+
+6. Performance Optimization
+
+Time-Series DB: Optimized for GPS tracking and battery data with high write throughput
+Feature Store: Pre-computed ML features reduce inference latency
+Data Lake separation: Historical data and ML training don't impact operational database performance
+Caching potential: API Gateway can implement caching strategies
+
+7. Security
+
+Centralized authentication: API Gateway & Auth layer provides single point for security enforcement
+Layer-based access control: Different layers can have different security policies
+External integrations isolated: Payment processing handled by external gateway reduces PCI compliance scope
+IoT security: Separate device layer with GPS, NFC, and remote lock capabilities
+
+8. Extensibility
+
+Plugin architecture for AI: New AI services can be added without modifying core services
+External API abstraction: New external data sources (Weather, Events) can be integrated easily
+LLM Provider abstraction: Can swap AI/ML service providers without changing application logic
+
+9. AI-Specific Principles
+AI Uncertainty Handling
+
+Provider abstraction: LLM Provider is a separate integration point, allowing provider switching
+Fallback capability: Core services don't depend on AI services - business can operate if AI fails
+Model versioning support: Feature Store enables A/B testing and gradual rollouts
+
+AI Validation & Verification
+
+Data Lake for monitoring: Historical data enables validation of AI predictions vs. actual outcomes
+Feature Store: Allows tracking of ML features and model performance over time
+Vision AI verification: Photo verification results can be audited and retrained
+
+10. Cost Optimization
+
+Right-sized data stores: Operational DB vs. Time-Series DB vs. Data Lake optimized for their use cases
+Selective AI usage: AI services target specific high-value problems (demand prediction, battery optimization)
+External API efficiency: Weather and Events APIs reduce need for internal data collection infrastructure
+
+11. Interoperability
+
+Standard API patterns: RESTful API Gateway enables integration with various clients
+IoT standards: NFC, GPS, remote lock/disable use standard protocols
+Multiple client support: Mobile app and Staff Portal served through same API layer
+
+12. Data-Driven Decision Making
+
+Comprehensive data collection: Operational DB + Time-Series DB + Data Lake capture all necessary data
+ML training pipeline: Data Lake feeds Feature Store for continuous model improvement
+Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
+
+**##Key Strengths Addressing Business Challenges:**
+
+Vehicle availability problem → Demand Prediction Engine with ML forecasting
+Battery management → Battery Optimization AI with prioritization algorithms
+Customer retention → Personalization Engine with LLM-powered recommendations
+Operational efficiency → Vision AI for automated photo verification
+Staff routing → Battery Optimization AI provides route optimization
+
 ## Limitations with adoption of Gen AI
 - Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
 - Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
