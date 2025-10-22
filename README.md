@@ -25,6 +25,15 @@ Enhance Battery Logistics: Prioritize battery swaps and charging based on predic
 Improve Customer Engagement: Encourage regular usage through personalized experiences.
 Automate Operations: Use AI to validate returns, detect damage, and streamline staff routing.
 
+## Business Constraints
+Booking rules: cars/vans bookable up to 7 days (bounded-duration); bikes/scooters up to 30 minutes with open-ended rentals (up to 12 hours). 
+Payment per minute; fines for late/wrong returns. 
+All vehicles have GPS; cars/vans may be remotely disabled; vehicles unlock via NFC-capable smartphone app. 
+Return rules: must be returned to designated spots, photographic proof required; cars/vans must be plugged to charger on return. 
+Operational reality: staff swap bike/scooter battery packs and redistribute vehicles via vans.
+Budget and margins: solutions must be cost-effective (cloud + API usage costs, operations).
+Regulatory & safety: remote disable and customer safety features must comply with local laws and insurance requirements.
+
 ## Reference Architecture
 <img width="1680" height="2256" alt="ReferenceArchitecture" src="https://github.com/user-attachments/assets/b8aab02f-f48f-4120-bcd7-698901c905ec" />
 
@@ -78,4 +87,15 @@ Automate Operations: Use AI to validate returns, detect damage, and streamline s
 - **Validate**: Uplift (CTR/retention), CSAT, safety flags, latency/cost; A/B via APIM revisions.
 <img width="5256" height="3253" alt="Personalization Engine" src="https://github.com/user-attachments/assets/5cf11d44-dabb-4d17-bfac-c525886604bf" />
 
-- 
+
+Data collection is the bottleneck: telemetry completeness, time synchronization, and photo quality determine model accuracy. 
+
+q4architecturekatamobilitycorp1…
+
+Human-in-loop remains critical for edge cases; fully autonomous control is risky and legally sensitive.
+
+RAG (retrieve + generate) can make the LLM's outputs more grounded — but retrieval quality and indexing matter.
+
+Small, interpretable models for operational decisions + LLMs for natural language tasks is an effective hybrid.
+
+Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
