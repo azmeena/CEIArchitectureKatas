@@ -95,7 +95,7 @@ Governance and observability pay off: tracking prompt versions and model outputs
 
 1. Separation of Concerns
 
-- Clear layer separation: Client Layer ? API Gateway ? Services ? Data ? IoT layers are distinctly separated
+- Clear layer separation: Client Layer -> API Gateway -> Services -> Data -> IoT layers are distinctly separated
 - Domain-driven service boundaries: Booking, Payment, and Fleet services handle specific business capabilities independently
 - AI services isolated: AI-powered services are grouped separately, preventing AI concerns from bleeding into core business logic
 
