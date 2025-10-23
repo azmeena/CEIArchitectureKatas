@@ -154,13 +154,26 @@ Small, interpretable models for operational decisions + LLMs for natural languag
 Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
 ## Limitations with adoption of Gen AI and how we solved them
-- Non-determinism: LLM responses are probabilistic not safe for unverified control commands (e.g., remotely disabling vehicles) without hard-coded checks and human-in-the-loop.
-- Data drift & retraining: usage patterns change by season/city models must be monitored and retrained.
-- Privacy & compliance: location, payment, and driver/customer photos are sensitive , must avoid sending PII to third-party LLMs without guarantees.
-- Explainability: GenAI summarizations or recommendations need traceability for audits and customer disputes.
-- Cost & latency: high-volume/real-time inference (per-minute pricing, on-device inference vs cloud) can be costly/latency-sensitive.
-- Vendor lock-in & disruption risk: providers may change pricing or SLAs; reliance on a single provider is risky.
-- Edge limitations: LLMs aren’t suitable on-device for some mobile or edge-constrained scenarios unless smaller models or embeddings-only approaches are used.
+- Non-determinism: LLM responses are probabilistic and unsafe for unverified control commands.
+  - Mitigations: Hard-coded safety checks; human-in-the-loop for sensitive actions; degrade to deterministic templates/rules or “human review required”; circuit breakers, timeouts, idempotency.
+- Data drift & retraining: Usage patterns change by season/city; models must be monitored and retrained.
+  - Mitigations: Retrieval grounding with “no answer” on low confidence; quality telemetry and feature flags; regression runbook to freeze/revert; scheduled monitoring and retraining.
+- Privacy & compliance: Location, payment, and photos are sensitive; avoid sending PII to third-party LLMs without guarantees.
+  - Mitigations: Provider allowlist by data class; regional routing; PII minimization/redaction; full audit logs of AI decisions.
+- Explainability: Summaries/recommendations need traceability for audits and disputes.
+  - Mitigations: Retrieval-grounded answers with citations; audit trails; “no answer” on low confidence.
+- Cost & latency: High-volume/real-time inference can be costly and latency-sensitive.
+  - Mitigations: Per-feature budgets, alerts, caps, kill switches; tiered defaults prefer smaller/faster models on critical paths; prompt compression/truncation; retrieval-first; caching (Redis) and safe batching; policy router with latency SLOs and max cost/request.
+- Vendor lock-in & disruption risk: Pricing/SLA changes or outages from a single provider.
+  - Mitigations: Capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per-vendor adapters; multi-provider policy router with health/cost-aware scoring and sticky routing; hot/warm secondary providers; optional self-hosted fallback (AKS + vLLM/Triton); feature flags for instant cutover.
+- Edge limitations: LLMs may be unsuitable on-device for constrained scenarios.
+  - Mitigations: Use smaller models or embeddings-only on device; offload heavy inference to cloud; degrade to cached/deterministic flows when constrained.
+
+	## Architecture hooks
+	- All AI calls traverse an Agent Orchestrator behind capability interfaces.
+	- Retrieval grounded via Cognitive Search; fall back to “no answer” on low confidence.
+	- Cost/quality telemetry per request; policies centrally managed (APIM/Config).
+	
 
 ## Architecture Principles Achieved
 
@@ -246,32 +259,6 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - ML training pipeline: Data Lake feeds Feature Store for continuous model improvement
 - Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
 
-
-  ## Our Strategy for Dealing with AI Uncertainty (Provider changes, price shocks, outages)
-
-### Strategy
-- **Provider abstraction**: Use capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per‑vendor adapters; isolate SDKs from business logic.
-- **Multi‑provider policy router**: Route by policy (quality tier, latency SLO, data classification, region, max cost/request). Health/cost‑aware scoring with sticky routing for A/B.
-- **Cost governance**: Per‑feature budgets and alerts; hard caps and kill switches. Prompt compression, truncation, retrieval‑first, caching (Redis), and batching where safe. Tiered defaults favor smaller/faster models on critical paths.
-- **Continuity & graceful degradation**: Hot/warm secondary providers plus optional self‑hosted fallback (AKS + vLLM/Triton). Degrade to deterministic templates/rules, cached answers, or “human review required.”
-- **Resilience controls**: Circuit breakers, exponential backoff, timeouts, idempotency, dead‑letter queues; feature flags for instant cutover.
-- **Security & compliance**: Provider allowlist by data class; regional routing; PII minimization/redaction; full audit logs of AI decisions.
-
-### Architecture hooks
-- All AI calls traverse the Agent Orchestrator; providers are behind capability interfaces.
-- Retrieval grounded via Cognitive Search; fall back to “no answer” on low confidence.
-- Cost/quality telemetry emitted per request; policies centrally managed via APIM/Config.
-
-### Operational playbooks
-- **Price spike**: Auto‑recompute effective $/unit → switch to lower‑tier model/provider within budget; tighten prompts and increase cache TTLs.
-- **Provider outage**: Auto‑failover to secondary; if multi‑region, degrade to deterministic mode and queue for human review.
-- **Quality regression**: Freeze variant, revert via feature flag, open incident with runbook.
-
-### Execution checklist
-- Capability interfaces + adapters implemented and tested.
-- Policy router live with health/cost scoring and feature flags.
-- Budgets, alerts, caps, and kill switches configured per feature.
-- Secondary providers and degradation modes verified quarterly.
 
 ## Our Strategy for Verifying GenAI Works in Production (Non‑determinism)
 
