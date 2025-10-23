@@ -29,7 +29,7 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 ## Our AI-Powered Solution
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 
-The Challenge: How do we know when and where people will want vehicles?
+The Challenge: How do we know when and where people will want vehicles? Can we anticipate customer needs?
 
 Our AI Solution: We deployed a sophisticated machine learning pipeline that analyzes historical usage patterns, real-time events, and weather conditions to forecast demand across all MobilityCorp locations.
 How It Works:
@@ -43,7 +43,7 @@ Business Impact: Staff can proactively reposition vehicles before demand spikes,
 
 **2. Battery Optimization AI: Intelligent Resource Allocation**
 
-The Challenge: Which bikes and scooters should we prioritize for battery swaps?
+The Challenge: Can we work out how to prioritise which vehicles to switch out batteries? (for bikes and scooters)
 
 Our AI Solution: A multi-objective optimization engine that prioritizes battery swap routes based on predicted demand, current battery levels, and staff routing efficiency.
 How It Works:
@@ -62,7 +62,7 @@ Business Impact: Staff spend less time driving and more time swapping batteries 
 
 **3. Personalization Engine: Building Customer Loyalty Through Intelligence**
 
-The Challenge: How do we convert ad-hoc users into regular commuters?
+The Challenge: Right now, most of our customers just use them on an ad-hoc basis -we’d like more of them to rely on our fleet for regular trips like daily commutes
 
 Our AI Solution: An LLM-powered personalization engine that understands individual user patterns and proactively encourages routine usage through smart recommendations and incentives.
 How It Works:
