@@ -34,7 +34,7 @@ Additionally, we selectively incorporated non-Microsoft products in areas where 
 
 
 
-Below describes our AI solution approach 
+Below describes  the main challenges and our AI solution approach 
 
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 
