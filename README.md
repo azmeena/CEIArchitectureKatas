@@ -113,7 +113,7 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 
 - **Purpose**: Forecast bay/zone demand and generate rebalancing targets.
 - **Data**: Fabric OneLake Gold (rides, bay occupancy, weather/events), Cosmos DB current state (last seen), SQL bookings, feature snapshots cached in Redis.
-- **Train**: Fabric pipeline → Azure ML (AutoML TS / custom LightGBM); register in AML; lineage in Purview.
+- **Train**: Fabric pipeline-> Azure ML (AutoML TS ); register in AML; lineage in Purview.
 - **Serve**
   - **Batch**: AML pipeline writes next 12–24h `demand_by_bay_hour` to SQL and hot ranks to Redis.
   - **Online what‑if**: Agent Orchestrator queries AML Endpoint for scenario runs.
@@ -127,7 +127,7 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 - **Purpose**: Predict time-to-empty and charger occupancy; create swap/charge routes.
 - **Data**: Fabric Gold (SOC curves, temp/elevation), telemetry stream-derived features, charger events; Azure Maps traffic matrix.
 - **Train**: Azure ML models for SOC depletion and occupancy; re‑trained daily; metrics logged and versioned.
-- **Serve**: Agent Orchestrator fetches predictions → Optimization (OR-Tools or Azure Quantum) with Azure Maps → writes crew tasks/routes to SQL and task state to Cosmos DB; caches “next actions” in Redis.
+- **Serve**: Agent Orchestrator fetches predictions -> Optimization (OR-Tools or Azure Quantum) with Azure Maps -> writes crew tasks/routes to SQL and task state to Cosmos DB; caches “next actions” in Redis.
 - **Validate**: Run-outs avoided, task SLA, route time/distance, charger-occupancy error.
 - 
 <img width="5124" height="3998" alt="Battery and Charging Optimization" src="https://github.com/user-attachments/assets/78af0f28-c27a-4156-96d8-bf693a5844f3" />
@@ -137,7 +137,7 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 - **Purpose**: Verify correct bay, EV plugged, and visible damage; route low confidence to human review.
 - **Data**: Photos in OneLake; metadata (bookingId, bayId, GPS, ts) in SQL; policies in Cognitive Search.
 - **Models**: Azure AI Vision or Azure OpenAI Vision; thresholding; optional RAG explanation on policy.
-- **Flow**: Returns API starts Durable Function → Agent Orchestrator calls Vision → high confidence: lock via IoT Hub, compute charges/fines in SQL, store evidence URIs; low confidence: enqueue review and hold charges.
+- **Flow**: Returns API starts Durable Function → Agent Orchestrator calls Vision->high confidence: lock via IoT Hub, compute charges/fines in SQL, store evidence URIs; low confidence: enqueue review and hold charges.
 - **Validate**: Precision/recall, dispute/chargeback rate, average review time, latency; Content Safety applied to uploads/prompts.
 
 <img width="3958" height="3060" alt="Vision Return Verification" src="https://github.com/user-attachments/assets/3a1360dd-91ea-4c5f-b326-632afb03f9f0" />
@@ -147,20 +147,12 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 - **Purpose**: Next‑best‑action (commute plan, bay suggestion, incentive) and natural‑language explanations of charges/fines with citations.
 - **Data**: SQL (history, segments, prices), Redis (recent features), forecasts from SQL, Cognitive Search over policies/FAQs; PII minimized.
 - **Models**: AML propensity/ranking + Azure OpenAI with RAG; Content Safety filters; bandit learning on outcomes.
-- **Serve**: API calls Agent Orchestrator → score propensity → retrieve grounding → generate message/plan; write decisions to SQL; cache quick tips in Redis.
+- **Serve**: API calls Agent Orchestrator -> score propensity → retrieve grounding->generate message/plan; write decisions to SQL; cache quick tips in Redis.
 - **Validate**: Uplift (CTR/retention), CSAT, safety flags, latency/cost; A/B via APIM revisions.
 <img width="5256" height="3253" alt="Personalization Engine" src="https://github.com/user-attachments/assets/5cf11d44-dabb-4d17-bfac-c525886604bf" />
 
 
-Data collection is the bottleneck: telemetry completeness, time synchronization, and photo quality determine model accuracy. 
 
-Human-in-loop remains critical for edge cases; fully autonomous control is risky and legally sensitive.
-
-RAG (retrieve + generate) can make the LLM's outputs more grounded — but retrieval quality and indexing matter.
-
-Small, interpretable models for operational decisions + LLMs for natural language tasks is an effective hybrid.
-
-Governance and observability pay off: tracking prompt versions and model outputs drastically reduces incident time-to-resolve.
 
 ## Limitations with adoption of Gen AI and how we solved them
 - Non-determinism: LLM responses are probabilistic and unsafe for unverified control commands.
