@@ -32,6 +32,7 @@ Our solution primarily leverages the Microsoft Azure ecosystem, given its compre
 
 Additionally, we selectively incorporated non-Microsoft products in areas where alternative solutions demonstrated clear superiority over their Microsoft counterparts. For instance, we integrated Google Maps for location services due to its richer mapping data and advanced APIs, and adopted open-source frameworks such as Prophet for demand forecasting, given their proven accuracy and flexibility. This hybrid approach ensures we leverage the best-in-class technologies across the ecosystem while maintaining seamless integration within the Azure-based architecture.
 
+The decisions for these choices are documented in ADR's
 
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 
