@@ -29,12 +29,12 @@
 - **Main**: View nearby vehicles/bays with live status (SoC, range, price) → filter by vehicle type
 - **Alt**: Location disabled; show citywide list and manual filters
 - **Post**: Selected vehicle/bay context cached
-- **Data**: Bay inventory, current positions (GPS), pricing rules [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Bay inventory, current positions (GPS), pricing rules
 
 ### UCB2 Book vehicle (cars/vans – scheduled window)
 - **Actors**: Customer
 - **Trigger**: Select car/van and time
-- **Pre**: User verified; payment valid; future window ≤ 7 days; no overlapping booking per user/vehicle [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Pre**: User verified; payment valid; future window ≤ 7 days; no overlapping booking per user/vehicle
 - **Main**: Choose start/end; price estimate; confirm → booking holds inventory
 - **Alt**: Late arrival grace period; auto-cancel if no show
 - **Post**: Booking status = Confirmed (timeboxed)
@@ -43,7 +43,7 @@
 ### UCB3 Start openended ride (bikes/scooters – up to 30 min ahead)
 - **Actors**: Customer
 - **Trigger**: Tap “Start ride” now or within 30 minutes
-- **Pre**: No active ride; vehicle free; battery above minimum; safety checklist [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Pre**: No active ride; vehicle free; battery above minimum; safety checklist
 - **Main**: Reserve → approach → NFC/app unlock → ride starts; meter per minute
 - **Alt**: Unlock fails → remote unlock fallback; vehicle fault prevents start
 - **Post**: Trip status = Inprogress; billing clock running
@@ -59,7 +59,7 @@
 - **Main**: Send unlock → vehicle confirms; on stop, lock and collect final telemetry
 - **Alt**: Connectivity loss; fall back to NFC/BLE token
 - **Post**: State synced; security audit
-- **Data**: Lock events, tokens [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Lock events, tokens
 
 ### UCC2 Remote disable (cars/vans) for safety/compliance
 - **Actors**: Operations, Safety
@@ -68,7 +68,7 @@
 - **Main**: Send disable; ensure safe stop envelope
 - **Alt**: Abort if unsafe
 - **Post**: Vehicle disabled; case opened
-- **Data**: Disable command, case [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Disable command, case
 
 ---
 
@@ -97,11 +97,11 @@
 ### UCE1 Guided return to designated bay
 - **Actors**: Customer
 - **Trigger**: End ride
-- **Pre**: Return bay availability; geofence; EV charger slot for cars/vans [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Pre**: Return bay availability; geofence; EV charger slot for cars/vans 
 - **Main**: Navigate to designated bay → for cars/vans plug in charger → capture photos → submit feedback
 - **Alt**: Bay full → alternate nearby bay with policy notice; charger fault → instruct alternate charger
 - **Post**: Return request created
-- **Data**: Return target, charger status [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Return target, charger status 
 
 ### UCE2 AI vision return verification (automated)
 - **Actors**: System; Human reviewer (exception)
@@ -118,7 +118,7 @@
 - **Main**: Assess fine per policy; inform customer with explanation and evidence; allow dispute window
 - **Alt**: Waive/adjust based on support outcome
 - **Post**: Invoice final; policy metrics updated
-- **Data**: Policy snapshot, fine line items [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Policy snapshot, fine line items 
 
 ---
 
@@ -129,7 +129,7 @@
 - **Trigger**: Trip events
 - **Main**: Accrue perminute charges; apply plan/discounts; hold funds if needed
 - **Post**: Running balance visible; final charge at close
-- **Data**: Tariff rules, meter ticks [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Tariff rules, meter ticks 
 
 ### UCF2 Invoice and settlement
 - **Actors**: System; Payment Provider; Customer
@@ -172,7 +172,7 @@
 - **Main**: Navigate → swap pack → update SoC/photo → mark complete
 - **Alt**: No charged packs; defer with reason
 - **Post**: Pack inventory updated; SLA tracked
-- **Data**: Swap event, SoC curve, pack IDs [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Swap event, SoC curve, pack IDs 
 
 ### UCG4 Charge session management (cars/vans)
 - **Actors**: Crew; System
@@ -180,7 +180,7 @@
 - **Main**: Plug in; track kWh and occupancy; free spot when done
 - **Alt**: Charger fault; reroute
 - **Post**: Charge session record; utilization metrics
-- **Data**: Session, bay charger status [[1]](https://coxinc-my.sharepoint.com/personal/rajendra_khade_coxinc_com/Documents/Attachments/q4architecturekatamobilitycorp1760443315324%281%29.pdf)
+- **Data**: Session, bay charger status 
 
 ### UCG5 Battery and charger prioritization (agentic)
 - **Actors**: **Charge & Battery Agent**
