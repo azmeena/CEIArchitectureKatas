@@ -165,7 +165,7 @@ Governance and observability pay off: tracking prompt versions and model outputs
 - Cost & latency: High-volume/real-time inference can be costly and latency-sensitive.
   - Mitigations: Per-feature budgets, alerts, caps, kill switches; tiered defaults prefer smaller/faster models on critical paths; prompt compression/truncation; retrieval-first; caching (Redis) and safe batching; policy router with latency SLOs and max cost/request.
 - Vendor lock-in & disruption risk: Pricing/SLA changes or outages from a single provider.
-  - Mitigations: Capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per-vendor adapters; multi-provider policy router with health/cost-aware scoring and sticky routing; hot/warm secondary providers; optional self-hosted fallback (AKS + vLLM/Triton); feature flags for instant cutover.
+  - Mitigations: Capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per-vendor adapters; multi-provider policy router with health/cost-aware scoring and sticky routing; hot/warm secondary providers; feature flags for instant cutover.
 - Edge limitations: LLMs may be unsuitable on-device for constrained scenarios.
   - Mitigations: Use smaller models or embeddings-only on device; offload heavy inference to cloud; degrade to cached/deterministic flows when constrained.
 
