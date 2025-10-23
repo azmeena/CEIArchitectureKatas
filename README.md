@@ -34,6 +34,8 @@ Additionally, we selectively incorporated non-Microsoft products in areas where 
 
 The decisions for these choices are documented in ADR's
 
+Below describes our AI solution approach 
+
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 
 The Challenge: How do we know when and where people will want vehicles? Can we anticipate customer needs?
