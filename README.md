@@ -137,7 +137,7 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 - **Purpose**: Verify correct bay, EV plugged, and visible damage; route low confidence to human review.
 - **Data**: Photos in OneLake; metadata (bookingId, bayId, GPS, ts) in SQL; policies in Cognitive Search.
 - **Models**: Azure AI Vision or Azure OpenAI Vision; thresholding; optional RAG explanation on policy.
-- **Flow**: Returns API starts Durable Function → Agent Orchestrator calls Vision->high confidence: lock via IoT Hub, compute charges/fines in SQL, store evidence URIs; low confidence: enqueue review and hold charges.
+- **Flow**: Returns API starts Durable Function-> Agent Orchestrator calls Vision->high confidence: lock via IoT Hub, compute charges/fines in SQL, store evidence URIs; low confidence: enqueue review and hold charges.
 - **Validate**: Precision/recall, dispute/chargeback rate, average review time, latency; Content Safety applied to uploads/prompts.
 
 <img width="3958" height="3060" alt="Vision Return Verification" src="https://github.com/user-attachments/assets/3a1360dd-91ea-4c5f-b326-632afb03f9f0" />
@@ -147,7 +147,7 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 - **Purpose**: Next‑best‑action (commute plan, bay suggestion, incentive) and natural‑language explanations of charges/fines with citations.
 - **Data**: SQL (history, segments, prices), Redis (recent features), forecasts from SQL, Cognitive Search over policies/FAQs; PII minimized.
 - **Models**: AML propensity/ranking + Azure OpenAI with RAG; Content Safety filters; bandit learning on outcomes.
-- **Serve**: API calls Agent Orchestrator -> score propensity → retrieve grounding->generate message/plan; write decisions to SQL; cache quick tips in Redis.
+- **Serve**: API calls Agent Orchestrator -> score propensity-> retrieve grounding->generate message/plan; write decisions to SQL; cache quick tips in Redis.
 - **Validate**: Uplift (CTR/retention), CSAT, safety flags, latency/cost; A/B via APIM revisions.
 <img width="5256" height="3253" alt="Personalization Engine" src="https://github.com/user-attachments/assets/5cf11d44-dabb-4d17-bfac-c525886604bf" />
 
