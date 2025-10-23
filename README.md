@@ -3,9 +3,9 @@
 # MobilityCorp AI Enhanced Last Mile Transportation Platform
 
 ## Team
-Avishek Chowdhury
-Azmeena Narsingani
-Raj Khade
+Avishek Chowdhury,
+Azmeena Narsingani,
+Raj Khade,
 Roger Paquin
 
 ## Problem Statement
