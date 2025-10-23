@@ -2,6 +2,12 @@
 
 # MobilityCorp AI Enhanced Last Mile Transportation Platform
 
+## Team
+Avishek Chowdhury
+Azmeena Narsingani
+Raj Khade
+Roger Paquin
+
 ## Problem Statement
 MobilityCorp provides short-term rentals for last-mile transport, including electric scooters, eBikes, and electric cars/vans. Operating in both urban and suburban areas, the company faces challenges in vehicle availability, battery management, and customer engagement. Customers book vehicles via a mobile app, and vehicles must be returned to designated spots with proof of return and feedback.
 
