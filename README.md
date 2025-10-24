@@ -265,32 +265,6 @@ Additionally, we selectively incorporated non-Microsoft products in areas where 
 - Real-time and batch processing: Time-Series DB for real-time tracking, Data Lake for batch analytics
 
 
-## Our Strategy for Verifying GenAI Works in Production (Non‑determinism)
-
-### Pre‑production evaluation
-- Golden datasets per use case (Demand, Battery, Vision, Personalization) including edge cases.
-- Offline eval harness with task‑specific metrics; CI gates require threshold wins vs control.
-- Version all prompts/chains/models; semantic versions with model cards and rollout notes.
-
-### Safe rollouts
-- Shadow traffic → canary (1–5%) → progressive rollout; auto‑rollback on SLO or safety breach.
-- A/B tests and bandits for personalization within policy and safety bounds.
-
-### Observability & drift
-- Log: inputs/features, prompt template+version, provider+model+version, output, latency, cost, safety flags, retrieval coverage.
-- Drift monitors: input distribution shift, hallucination/refusal rate, toxicity flags, grounding coverage/freshness.
-- Weekly regression jobs on fresh samples; scorecards by city/segment.
-
-### Guardrails & human‑in‑loop
-- Hard checks for critical actions (e.g., fines/locks require deterministic validation).
-- Confidence thresholds route low‑confidence cases to human review; Content Safety pre/post filters.
-- RAG rules: require citations; degrade to “no answer” if retrieval confidence is low.
-
-### Execution checklist
-- Golden datasets + eval harness wired into CI.
-- Shadow/canary rollout with auto‑rollback enabled.
-- Dashboards and alerts for quality, cost, latency, safety, and drift.
-- Human‑review workflow active; RAG guardrails enforced.
 
 ## Business Outcomes
 Our AI-enhanced architecture directly addresses MobilityCorp's stated challenges:
