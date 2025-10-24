@@ -160,24 +160,20 @@ Additionally, we selectively incorporated non-Microsoft products in areas where 
 
 ## Limitations with adoption of Gen AI and how we solved them
 - Non-determinism: LLM responses are probabilistic and unsafe for unverified control commands.
-  - Mitigations: Hard-coded safety checks; human-in-the-loop for sensitive actions; degrade to deterministic templates/rules or “human review required”; circuit breakers, timeouts, idempotency.
+  - Mitigations: Hard-coded safety checks; human-in-the-loop for sensitive actions; degrade to deterministic templates/rules or “human review required”.
 - Data drift & retraining: Usage patterns change by season/city; models must be monitored and retrained.
-  - Mitigations: Retrieval grounding with “no answer” on low confidence; quality telemetry and feature flags; regression runbook to freeze/revert; scheduled monitoring and retraining.
+  - Mitigations: Retrieval grounding with “no answer” on low confidence; quality telemetry and feature flags; regression runbook to freeze/revert; scheduled monitoring and retraining. ADR-007. Azure ML 		monitoring.
 - Privacy & compliance: Location, payment, and photos are sensitive; avoid sending PII to third-party LLMs without guarantees.
-  - Mitigations: Provider allowlist by data class; regional routing; PII minimization/redaction; full audit logs of AI decisions.
+  - Mitigations: Provider allowlist by data class; regional routing; PII minimization/redaction; full audit logs of AI decisions. ADR-007. Azure ML monitoring.
 - Explainability: Summaries/recommendations need traceability for audits and disputes.
-  - Mitigations: Retrieval-grounded answers with citations; audit trails; “no answer” on low confidence.
+  - Mitigations: Retrieval-grounded answers with citations; audit trails; “no answer” on low confidence. Pre production evaluation.
 - Cost & latency: High-volume/real-time inference can be costly and latency-sensitive.
-  - Mitigations: Per-feature budgets, alerts, caps, kill switches; tiered defaults prefer smaller/faster models on critical paths; prompt compression/truncation; retrieval-first; caching (Redis) and safe batching; policy router with latency SLOs and max cost/request.
+  - Mitigations: Per-feature budgets, alerts, caps, kill switches; tiered defaults prefer smaller/faster models on critical paths; prompt compression/truncation; retrieval-first; caching (Redis) and safe batching.
 - Vendor lock-in & disruption risk: Pricing/SLA changes or outages from a single provider.
-  - Mitigations: Capability interfaces (`LLMProvider`, `VisionProvider`, `EmbeddingsProvider`) with per-vendor adapters; multi-provider policy router with health/cost-aware scoring and sticky routing; hot/warm secondary providers; feature flags for instant cutover.
+  - Mitigations: Azure AI foundry provides Model flexibility.
 - Edge limitations: LLMs may be unsuitable on-device for constrained scenarios.
   - Mitigations: Use smaller models or embeddings-only on device; offload heavy inference to cloud; degrade to cached/deterministic flows when constrained.
 
-	## Architecture hooks
-	- All AI calls traverse an Agent Orchestrator behind capability interfaces.
-	- Retrieval grounded via Cognitive Search; fall back to “no answer” on low confidence.
-	- Cost/quality telemetry per request; policies centrally managed (APIM/Config).
 	
 
 ## Architecture Principles Achieved
