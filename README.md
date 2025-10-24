@@ -106,10 +106,9 @@ Business Impact: Reduces customer service workload, speeds up return processing,
 After we designed our reference architecture and solution approach , we decided out solution will primarily leverages the Microsoft Azure ecosystem, given its comprehensive suite of AI, infrastructure, and supporting technologies required to deliver this solution effectively. One key consideration during our design deliberations was AI platform stability and potential vendor lock-in. However, we determined that Microsoft’s position as a leading and mature player in the enterprise AI space, combined with its proven product stability, mitigates much of this risk. Furthermore, Azure’s AI Foundry architecture provides flexibility to switch or integrate new underlying AI models as the LLM landscape evolves, without disrupting the overall solution stack. This ensures long-term adaptability and resilience against shifts in the rapidly changing AI ecosystem.
 
 Additionally, we selectively incorporated non-Microsoft products in areas where alternative solutions demonstrated clear superiority over their Microsoft counterparts. For instance, we integrated Google Maps for location services due to its richer mapping data and advanced APIs, and adopted open-source frameworks such as Prophet for demand forecasting, given their proven accuracy and flexibility. This hybrid approach ensures we leverage the best-in-class technologies across the ecosystem while maintaining seamless integration within the Azure-based architecture.The decisions for these choices are documented in ADR's
+<img width="3793" height="7035" alt="cloud-architecture" src="https://github.com/user-attachments/assets/16e5f136-2618-4c43-89a7-4812873517b2" />
 
 
-
-<img width="2528" height="4690" alt="Azure Arch" src="https://github.com/user-attachments/assets/bd36b6ee-4de6-4a01-995c-9524b7db5ab9" />
 
 
 ## AI Usecase 1: Demand Prediction & Rebalance
