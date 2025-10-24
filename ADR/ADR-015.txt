@@ -1,0 +1,33 @@
+Title
+  AI Provider Abstraction and Continuity Strategy
+
+Status
+  Accepted
+
+Context
+  AI model/provider capabilities, pricing, and availability change rapidly. We must avoid lock‑in, control costs, and maintain continuity if a provider degrades, raises prices, or shuts down—without rewriting business logic.
+
+Decision Drivers
+  - Limit vendor lock‑in and enable rapid provider swaps
+  - Enforce cost guardrails and react to price shocks
+  - High availability and graceful degradation during outages
+  - Centralized governance, auditability, and safety
+  - Minimal impact on core services
+
+Considered Options
+  A) Directly integrate a single AI provider SDK in services
+  B) Central capability interfaces with a policy‑based router and multiple provider adapters
+  C) Fully self‑host all models from day one
+
+Decision
+  Chosen option: "B) Capability interfaces + policy router + multi‑provider adapters", because it balances agility, reliability, and cost control while keeping business logic vendor‑agnostic. Azure Foundry also provides Open Source Models to choose from.
+
+Consequences
+  Positive:
+    - Provider swaps without touching business code
+    - Automated cost/latency/quality‑aware routing and failover
+    - Feature flags for instant cutover; graceful degradation paths
+    - Clear audit trail of prompts/models/costs per request
+  Negative:
+    - Higher platform complexity (router, adapters, telemetry)
+    - Ongoing effort to validate secondary providers and fallback modes
