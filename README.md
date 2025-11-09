@@ -3,6 +3,8 @@
 # MobilityCorp AI Enhanced Last Mile Transportation Platform
 
 ## Team
+<img width="2345" height="1165" alt="team" src="https://github.com/user-attachments/assets/acd0c0c0-65ae-4cd5-bc31-8f142bf89166" />
+
 - [Avishek Chowdhury](https://www.linkedin.com/in/avimdm/),
 - [Azmeena Narsingani](https://www.linkedin.com/in/azmeena-narsingani-1abb18112/),
 - [Raj Khade](https://www.linkedin.com/in/rajkhade/),
