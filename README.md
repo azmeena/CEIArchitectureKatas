@@ -2,6 +2,27 @@
 
 # MobilityCorp AI Enhanced Last Mile Transportation Platform
 
+## Table of Contents
+
+- [MobilityCorp AI Enhanced Last Mile Transportation Platform](#mobilitycorp-ai-enhanced-last-mile-transportation-platform)
+  - [Table of Contents](#table-of-contents)
+  - [Team](#team)
+
+- [Problem Statement](#problem-statement)
+  - [Key Challenges](#key-challenges)
+  - [Key Objectives](#key-objectives)
+  - [Business Constraints](#business-constraints)
+
+- [Our AI-Powered Solution](#our-ai-powered-solution)
+
+- [Limitations with adoption of Gen AI and how we solved them](#limitations-with-adoption-of-gen-ai-and-how-we-solved-them)
+
+- [Architecture Principles Achieved](#architecture-principles-achieved)
+
+- [Business Outcomes](#business-outcomes)
+
+- [Conclusion](#conclusion)
+
 ## Team
 <img width="2345" height="1165" alt="team" src="https://github.com/user-attachments/assets/acd0c0c0-65ae-4cd5-bc31-8f142bf89166" />
 
