@@ -13,7 +13,14 @@
   - [Key Objectives](#key-objectives)
   - [Business Constraints](#business-constraints)
 
+- [Reference Architecture](#reference-architecture)
+- [Cloud Architecture](#cloud-architecture)
+  
 - [Our AI-Powered Solution](#our-ai-powered-solution)
+  - [AI Usecase 1: Demand Prediction & Rebalance](#ai-usecase-1-demand-prediction--rebalance)
+  - [AI Usecase 2: Battery & Charging Optimization](#ai-usecase-2-battery--charging-optimization)
+  - [AI Usecase 3 — Vision Return Verification](#ai-usecase-3-vision-return-verification)
+  - [AI Usecase 4 — Personalization, Policy & Pricing Copilot](#ai-usecase-4-personalization-policy--pricing-copilot)
 
 - [Limitations with adoption of Gen AI and how we solved them](#limitations-with-adoption-of-gen-ai-and-how-we-solved-them)
 
