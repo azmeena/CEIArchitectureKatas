@@ -63,6 +63,13 @@ MobilityCorp provides short-term rentals for last-mile transport, including elec
 
 
 ## Our AI-Powered Solution
+### Business outcomes achieved
+
+Refer detailed cost & efficiency analysis
+
+- Productivity - ≈2× now; up to 5× in manual-heavy areas
+- Cost - 20–30% lower (base); up to 60–80% where work is mostly manual
+- Efficiency - ≈1.8× more trips per staff hour now; up to 4× on verification workflow
 
 **1. **Demand Prediction Engine: Putting Vehicles Where They're Needed****
 
